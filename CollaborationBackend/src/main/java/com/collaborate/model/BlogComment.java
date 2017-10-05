@@ -14,12 +14,11 @@ import javax.persistence.Table;
 @Table
 public class BlogComment {
 	@Id
-	@GeneratedValue
 	int id;
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="blogId")
 	Blog blog;
-	String comment,userName;
+	String comments,userName;
 	Date CreateDate;
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="UserId")
@@ -36,11 +35,11 @@ public class BlogComment {
 	public void setBlog(Blog blog) {
 		this.blog = blog;
 	}
-	public String getComment() {
-		return comment;
+	public String getComments() {
+		return comments;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	public String getUserName() {
 		return userName;

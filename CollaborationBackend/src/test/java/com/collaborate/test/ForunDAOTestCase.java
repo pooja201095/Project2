@@ -10,12 +10,15 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.collaborate.dao.ForumDAO;
+import com.collaborate.dao.UsersDAO;
 import com.collaborate.model.Blog;
 import com.collaborate.model.Forum;
+import com.collaborate.model.Users;
 
 public class ForunDAOTestCase {
 	
 	static ForumDAO forumDAO;
+	static UsersDAO usersDAO;
 
 	@BeforeClass
 	public static void initialize() {
@@ -34,7 +37,8 @@ public class ForunDAOTestCase {
 		forum.setForumId(1001);
 		forum.setForumName("C");
 		forum.setForumContent("Programming language");
-		forum.setUserid("Pooja@gmail.com");
+		Users users=usersDAO.getUser("Pooja@gmail.com");
+		forum.setUsers(users);
 		forum.setCreateDate(new java.util.Date());
 		forum.setStatus("NA");
 		assertTrue("Problem in forum creation", forumDAO.createForum(forum));
@@ -48,7 +52,8 @@ public class ForunDAOTestCase {
 		forum.setForumId(1001);
 		forum.setForumName("C");
 		forum.setForumContent("programming language");
-		forum.setUserid("Pooja@gmail.com");
+		Users users=usersDAO.getUser("Pooja@gmail.com");
+		forum.setUsers(users);
 		forum.setCreateDate(new java.util.Date());
 		forum.setStatus("A");
 		assertTrue("Problem in forum approval", forumDAO.approveForum(forum));

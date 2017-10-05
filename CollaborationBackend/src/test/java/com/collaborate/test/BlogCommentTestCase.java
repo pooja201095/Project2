@@ -18,6 +18,10 @@ import com.collaborate.model.Users;
 public class BlogCommentTestCase {
 
 	static BlogCommentDAO blogCommentDAO; 
+
+	static BlogDAO blogDAO;
+	static UsersDAO usersDAO;
+	
 	
 	@BeforeClass
 	public static void initialize()
@@ -26,28 +30,23 @@ public class BlogCommentTestCase {
 		annotationConfigApplicationContext.scan("com.collaborate");
 		annotationConfigApplicationContext.refresh();
 		blogCommentDAO=(BlogCommentDAO)annotationConfigApplicationContext.getBean("BlogCommentDAO");
+		blogDAO=(BlogDAO) annotationConfigApplicationContext.getBean("BlogDAO");
+		usersDAO=(UsersDAO) annotationConfigApplicationContext.getBean("UsersDAO");
 	}
-	/*@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-*/
-	BlogDAO blogDAO;
-	UsersDAO usersDAO;
 	
 	@Test
 	public void createBlogCommentTest()
 	{
 		BlogComment blogComment= new BlogComment();
-		blogComment.setId(1001);
-		blogComment.setComment("That is a very inspirational piece of work. Well done...KeepGoing!!");
+		blogComment.setId(1002);
+		blogComment.setComments("That is a very inspirational piece of work. Well done...KeepGoing!!");
 		blogComment.setCreateDate(new Date());
-		blogComment.setUserName("Pooja");
-		Blog blog= new Blog();
-		blog=blogDAO.getBlog(1001);
+		blogComment.setUserName("pooja11");
+		Blog blog= blogDAO.getBlog(1002);
 		blogComment.setBlog(blog);
 		Users users= new Users();
-		users=usersDAO.getUser("pooja@gmail.com");
+		users=usersDAO.getUser("Sohan@gmail.com");
+		blogComment.setUsers(users);
 		assertTrue("Problem in blog comment creation", blogCommentDAO.createBlogComment(blogComment));
 		
 	

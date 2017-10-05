@@ -2,9 +2,11 @@ package com.collaborate.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.collaborate.model.BlogComment;
 
@@ -17,13 +19,15 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 		this.sessionFactory=sessionFactory;
 	}
 
+	@Transactional
 	@Override
 	public boolean createBlogComment(BlogComment blogComment) {
 		try{
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
+		sessionFactory.getCurrentSession().saveOrUpdate(blogComment);
+		/*session.beginTransaction();
 		session.saveOrUpdate(blogComment);
-		session.getTransaction().commit();
+		/*session.close();
+		session.getTransaction().commit();*/
 		System.out.println("Blog comment successfully created");
 		return true;
 		}
@@ -36,26 +40,59 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 
 	@Override
 	public BlogComment getBlogComment(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+		Session session= sessionFactory.getCurrentSession();
+		BlogComment blogComment= (BlogComment) session.get(BlogComment.class,id);
+		System.out.println(id);
+		return blogComment;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<BlogComment> getBlogComments() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session= sessionFactory.openSession();
+		Query query= session.createQuery("from BlogComment");
+		List<BlogComment> listBlogComment=query.list();
+		return listBlogComment;
 	}
 
 	@Override
 	public boolean editBlogComment(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		try{
+			Session session= sessionFactory.openSession();
+			BlogComment blogComment= (BlogComment) session.get(BlogComment.class,id);
+			blogComment.setComments("Correct comment");
+			session.flush();
+			session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean deleteBlogComment(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		try{
+		Session session= sessionFactory.openSession();
+		BlogComment blogComment= (BlogComment) session.get(BlogComment.class,id);
+		session.delete(blogComment);
+		session.flush();
+		session.close();
+		return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

@@ -1,0 +1,13 @@
+<span style="color:red">{{error}}</span>
+<div class="container">
+<form>
+<div class="form-group">
+UserId:<input type="text" ng-model="users.userid" class="form-control">
+<span style="color:red">{{error.message}}</span>
+</div>
+<div class="form-group">
+Password:<input type="password" ng-model="users.password" class="form-control">
+</div>
+<input type="submit" ng-click="login()">
+</form>
+</div>

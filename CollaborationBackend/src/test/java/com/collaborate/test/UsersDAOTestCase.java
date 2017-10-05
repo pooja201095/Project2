@@ -28,15 +28,18 @@ public class UsersDAOTestCase {
 		
 	}
 	
+
 	
 	@Test
 	public void createUserTest()
 	{
 		Users users= new Users();
-		users.setUserId("pooja@gmail.com");
+		users.setUserid("Pooja@gmail.com");
+		users.setEmail("Pooja@gmail.com");
 		users.setFirstName("pooja");
-		users.setLastName("Chavan");
-		users.setPassword("abcd");
+		users.setLastName("chavan");
+		users.setPassword("asdqwe");
+		users.setPhoneNo("9898987799");
 		users.setRole("User");
 		users.setStatus("NA");
 		users.setIsOnline("No");
@@ -49,7 +52,7 @@ public class UsersDAOTestCase {
 	public void approveUserTest()
 	{
 		Users users= new Users();
-		users.setUserId("pooja@gmail.com");
+		users.setUserid("pooja@gmail.com");
 		users.setFirstName("pooja");
 		users.setLastName("Chavan");
 		users.setPassword("abcd");
@@ -83,19 +86,22 @@ public class UsersDAOTestCase {
 	}
 	
 	
-	@Ignore
+	/*@Ignore
 	@Test 
 	public void editUserTestCase()
 	{
-		assertTrue("Problem in getting the list",usersDAO.editUsers("pooja@gmail.com"));
+		
+		Users users=null;
+		assertTrue("Problem in getting the list",usersDAO.editUsers(users));
 		
 	}
+*/
 
 	@Ignore
 	@Test
 	public void deleteUserTestCase()
 	{
-		assertTrue("Problem in deleting user",usersDAO.deleteUsers("pooja@gmail.com"));
+		assertTrue("Problem in deleting user",usersDAO.deleteUsers("Sohan@gmail.com"));
 	}
 	/*@Test
 	public void test() {

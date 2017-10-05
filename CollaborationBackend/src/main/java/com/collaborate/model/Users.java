@@ -1,7 +1,10 @@
 package com.collaborate.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -9,12 +12,22 @@ import javax.persistence.Table;
 public class Users {
 	@Id
 	String userid;
-	String firstName,lastName,password,role,status,isOnline;
-	public String getUserId() {
+	@Column(nullable=false,unique=true)
+	String email;
+	String firstName,lastName,password,role,status,isOnline,phoneNo;
+	@OneToMany(targetEntity=BlogComment.class,fetch=FetchType.EAGER,mappedBy=("Users"))
+	
+	public String getUserid() {
 		return userid;
 	}
-	public void setUserId(String userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -52,5 +65,11 @@ public class Users {
 	public void setIsOnline(String isOnline) {
 		this.isOnline = isOnline;
 	}
-
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	
 }

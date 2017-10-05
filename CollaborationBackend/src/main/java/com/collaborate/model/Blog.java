@@ -3,7 +3,9 @@ package com.collaborate.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity //put jpa dependencies
@@ -14,6 +16,8 @@ public class Blog {
 	String blogName,blogContent,status,userid;
 	int likes;
 	private Date createDate;
+
+	@OneToMany(targetEntity=BlogComment.class,fetch=FetchType.EAGER,mappedBy=("Blog"))
 	public int getBlogId() {
 		return blogId;
 	}

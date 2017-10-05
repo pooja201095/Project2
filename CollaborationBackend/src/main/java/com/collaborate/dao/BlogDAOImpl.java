@@ -56,6 +56,7 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
+	@Transactional
 	@Override
 	public Blog getBlog(int blogid) {
 		try

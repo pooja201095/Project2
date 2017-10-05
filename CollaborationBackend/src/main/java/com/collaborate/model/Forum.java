@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +13,16 @@ import javax.persistence.Table;
 public class Forum {
 	@Id
 	int forumId;
-	String forumName,forumContent,status,userid;
+	String forumName,forumContent,status;
+	@ManyToOne
+	@JoinColumn(name="userId")
+	Users users;
+	public Users getUsers() {
+		return users;
+	}
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 	private Date createDate;
 	
 	public int getForumId() {
@@ -38,12 +48,6 @@ public class Forum {
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
 	}
 	public Date getCreateDate() {
 		return createDate;

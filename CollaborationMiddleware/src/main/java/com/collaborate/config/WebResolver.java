@@ -16,8 +16,8 @@ public class WebResolver {
 	public InternalResourceViewResolver getViewReolver()
 	{
 		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-		internalResourceViewResolver.setPrefix("/WEB-INF");
-		internalResourceViewResolver.setSuffix(".jsp");
+		internalResourceViewResolver.setPrefix("/Users");
+		internalResourceViewResolver.setSuffix(".html");
 		System.out.println("Resolver Created..........");
 		return internalResourceViewResolver;
 		

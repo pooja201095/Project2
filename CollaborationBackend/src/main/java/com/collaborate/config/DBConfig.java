@@ -13,12 +13,6 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.collaborate.dao.BlogDAO;
-import com.collaborate.dao.BlogDAOImpl;
-import com.collaborate.dao.ForumDAO;
-import com.collaborate.dao.ForumDAOImpl;
-import com.collaborate.dao.UsersDAO;
-import com.collaborate.dao.UsersDAOImpl;
 import com.collaborate.model.Blog;
 import com.collaborate.model.BlogComment;
 import com.collaborate.model.Forum;
@@ -46,6 +40,7 @@ public class DBConfig {
 	{
 		Properties properties= new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		properties.setProperty("hibernate.show_sql", "true");
 		properties.put("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
 		return properties;
 	}

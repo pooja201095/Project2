@@ -46,7 +46,8 @@ public class BlogController {
 		{
 			return new ResponseEntity<String>("Blog created successfully",HttpStatus.OK);
 		}
-		else{
+		else
+		{
 			return new ResponseEntity<String>("Error in blog creation",HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
