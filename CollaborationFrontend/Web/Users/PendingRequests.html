@@ -1,0 +1,17 @@
+<span ng-if="pendingRequests.length==0"><b>No Pending Requests</b></span>
+<table class="table table-stripped">
+<tbody>
+<tr ng-repeat="request in pendingRequests">
+
+<td>{{request.fromId}}</td>
+<td><img src="http://localhost:8081/CollaborationMiddleware/getProfilePicture/{{request.fromId}}" alt="Image Not Available" height="400px" width="400px"></td>
+
+<td><a class="btn btn-primary" ng-click="updatePendingRequests(request,'A')">Accept</a></td>
+
+<!-- ==here request object has all values like fromId,toId,FriendId,status and here request.status value is P== -->
+
+<td><a class="btn btn-warning" ng-click="updatePendingRequests(request,'D')">Delete</a></td>	<!-- Request Status='P' -->
+
+</tr>
+</tbody>
+</table>

@@ -29,7 +29,7 @@ public class ForunDAOTestCase {
 	}
 	
 	
-	/*@Ignore*/
+	/*@Ignore
 	@Test
 	public void createForumTest() 
 	{
@@ -96,5 +96,5 @@ public class ForunDAOTestCase {
 		assertTrue("Problem in deleting Forum", forumDAO.deleteForum(1001));
 	}
 
-
+*/
 }

@@ -1,0 +1,19 @@
+<span ng-if="suggestedUsers.length==0"><b>No Suggested Users</b></span>
+<table class="table table-stripped">
+<tbody>
+<tr ng-repeat="user in suggestedUsers">
+
+<td>{{user.userid}}</td>
+<td>{{user.firstName}} {{user.lastName}}</td>
+<td>{{user.role}}</td>
+<td>{{user.email}}</td>
+
+<td ng-if="user.isOnline">YES</td>
+<td ng-if="!user.isOnline">NO</td>
+<td><img src="http://localhost:8081/CollaborationMiddleware/getProfilePicture/{{user.userid}}"></td>
+<td><a class="btn btn-default" ng-click="sendFriendRequest(user.userid)">Send Friend Request</a></td>
+</tr>
+
+
+</tbody>
+</table>

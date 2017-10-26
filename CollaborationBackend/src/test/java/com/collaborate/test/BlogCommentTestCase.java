@@ -34,7 +34,7 @@ public class BlogCommentTestCase {
 		usersDAO=(UsersDAO) annotationConfigApplicationContext.getBean("UsersDAO");
 	}
 	
-	@Test
+	/*@Test
 	public void createBlogCommentTest()
 	{
 		BlogComment blogComment= new BlogComment();
@@ -50,5 +50,5 @@ public class BlogCommentTestCase {
 		assertTrue("Problem in blog comment creation", blogCommentDAO.createBlogComment(blogComment));
 		
 	
-	}
+	}*/
 }

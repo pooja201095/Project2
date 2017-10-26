@@ -6,12 +6,9 @@ import com.collaborate.model.Blog;
 
 public interface BlogDAO {
 	
-	public boolean createBlog(Blog blog);
-	public Blog getBlog(int blogid);
-	public List<Blog> getBlogs();
-	public boolean approveBlog(Blog blog);
-	public boolean editBlog(int blogid);
-	public boolean deleteBlog(int blogid);
-	public List<Blog> getApprovedBlogs();
-
+	public void addBlog(Blog blog);
+	public List<Blog> getBlogs(int approved);
+	public Blog getBlogById(int id);
+	public void updateBlog(Blog blog);
+	
 }

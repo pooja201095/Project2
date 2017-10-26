@@ -30,19 +30,19 @@ public class UsersDAOTestCase {
 	
 
 	
-	@Test
+	/*@Test
 	public void createUserTest()
 	{
 		Users users= new Users();
-		users.setUserid("Pooja@gmail.com");
-		users.setEmail("Pooja@gmail.com");
-		users.setFirstName("pooja");
-		users.setLastName("chavan");
-		users.setPassword("asdqwe");
-		users.setPhoneNo("9898987799");
-		users.setRole("User");
-		users.setStatus("NA");
+		users.setUserid("admin@gmail.com");
+		users.setFirstName("admin");
+		users.setLastName("admin");
+		users.setPassword("admin");
+		users.setRole("Admin");
+		users.setStatus("A");
 		users.setIsOnline("No");
+		users.setEmail("admin@gmail.com");
+		users.setPhoneNo("09999999999");
 		assertTrue("Problem in user creation",usersDAO.createUsers(users));
 	}
 	
@@ -52,13 +52,15 @@ public class UsersDAOTestCase {
 	public void approveUserTest()
 	{
 		Users users= new Users();
-		users.setUserid("pooja@gmail.com");
-		users.setFirstName("pooja");
-		users.setLastName("Chavan");
-		users.setPassword("abcd");
-		users.setRole("User");
+		users.setUserid("admin@gmail.com");
+		users.setFirstName("admin");
+		users.setLastName("admin");
+		users.setPassword("admin");
+		users.setRole("Admin");
 		users.setStatus("A");
 		users.setIsOnline("No");
+		users.setEmail("admin@gmail.com");
+		users.setPhoneNo("09999999999");
 		assertTrue("Problem in user approval",usersDAO.approveUsers(users));
 	}
 	
@@ -86,7 +88,7 @@ public class UsersDAOTestCase {
 	}
 	
 	
-	/*@Ignore
+	@Ignore
 	@Test 
 	public void editUserTestCase()
 	{
@@ -95,7 +97,7 @@ public class UsersDAOTestCase {
 		assertTrue("Problem in getting the list",usersDAO.editUsers(users));
 		
 	}
-*/
+
 
 	@Ignore
 	@Test
@@ -103,7 +105,7 @@ public class UsersDAOTestCase {
 	{
 		assertTrue("Problem in deleting user",usersDAO.deleteUsers("Sohan@gmail.com"));
 	}
-	/*@Test
+	@Test
 	public void test() {
 		fail("Not yet implemented");
 	}*/

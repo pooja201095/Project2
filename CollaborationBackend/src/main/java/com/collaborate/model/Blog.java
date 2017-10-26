@@ -4,7 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -12,23 +16,28 @@ import javax.persistence.Table;
 @Table
 public class Blog {
 	@Id
-	int blogId;
-	String blogName,blogContent,status,userid;
-	int likes;
-	private Date createDate;
-
-	@OneToMany(targetEntity=BlogComment.class,fetch=FetchType.EAGER,mappedBy=("Blog"))
-	public int getBlogId() {
-		return blogId;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	private String blogTitle;
+	@Lob//Large object-character large object-CLOB
+	private String blogContent;
+	@ManyToOne
+	private Users postedBy;
+	private Date postedOn;
+	private boolean approved;
+	private String rejectionReason;
+	private int likes;
+	public int getId() {
+		return id;
 	}
-	public void setBlogId(int blogId) {
-		this.blogId = blogId;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getBlogName() {
-		return blogName;
+	public String getBlogTitle() {
+		return blogTitle;
 	}
-	public void setBlogName(String blogName) {
-		this.blogName = blogName;
+	public void setBlogTitle(String blogTitle) {
+		this.blogTitle = blogTitle;
 	}
 	public String getBlogContent() {
 		return blogContent;
@@ -36,17 +45,29 @@ public class Blog {
 	public void setBlogContent(String blogContent) {
 		this.blogContent = blogContent;
 	}
-	public String getStatus() {
-		return status;
+	public Users getPostedBy() {
+		return postedBy;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPostedBy(Users postedBy) {
+		this.postedBy = postedBy;
 	}
-	public String getUserId() {
-		return userid;
+	public Date getPostedOn() {
+		return postedOn;
 	}
-	public void setUserId(String userid) {
-		this.userid = userid;
+	public void setPostedOn(Date postedOn) {
+		this.postedOn = postedOn;
+	}
+	public boolean isApproved() {
+		return approved;
+	}
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+	public String getRejectionReason() {
+		return rejectionReason;
+	}
+	public void setRejectionReason(String rejectionReason) {
+		this.rejectionReason = rejectionReason;
 	}
 	public int getLikes() {
 		return likes;
@@ -54,12 +75,9 @@ public class Blog {
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-	public Date getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+	
+	
+	
 	
 	
 

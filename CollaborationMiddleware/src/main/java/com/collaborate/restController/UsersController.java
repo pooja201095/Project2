@@ -1,6 +1,7 @@
 package com.collaborate.restController;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -31,23 +32,7 @@ public class UsersController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping(value="/getAllUsers")
-	public ResponseEntity<List<Users>> getAllUsers()
-	{
-		ArrayList<Users> listUsers= new ArrayList<Users>();
-		listUsers=(ArrayList<Users>) userDAO.getUsers();
-		System.out.println("get users method successfully called.......");
-		return new ResponseEntity<List<Users>>(listUsers,HttpStatus.OK);
-	}
-	
-	@GetMapping(value="/getApprovedUsers")
-	public ResponseEntity<List<Users>> getApprovedUsers()
-	{
-		ArrayList<Users> listUsers= new ArrayList<Users>();
-		listUsers=(ArrayList<Users>) userDAO.getApprovedUsers();
-		System.out.println("Approved users method successfully called.......");
-		return new ResponseEntity<List<Users>>(listUsers,HttpStatus.OK);
-	}
+
 	
 	@PostMapping(value="/createUsers")
 	public ResponseEntity<?>createUsers(@RequestBody Users users)
@@ -66,6 +51,7 @@ public class UsersController {
 			return new ResponseEntity<Error>(error,HttpStatus.NOT_ACCEPTABLE);
 		}
 		boolean result= userService.createUsers(users);
+		System.out.println(result);
 		if(result)
 		{
 			System.out.println("Success");
@@ -85,6 +71,7 @@ public class UsersController {
 	//Each user unique httpsession will get created.
 	public ResponseEntity<?>login(@RequestBody Users users,HttpSession session)
 	{
+		System.out.println(users.getUserid());
 		Users vusers=userService.login(users);
 		if(vusers==null)
 		{
@@ -128,32 +115,6 @@ public class UsersController {
 		return new ResponseEntity<Users>(users,HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/approveUsers/{userId}")
-	public ResponseEntity<String> approveUsers(@PathVariable("userId")String userId)
-	{
-		Users users= userDAO.getUser(userId);
-		if(userDAO.approveUsers(users))
-		{
-			System.out.println(userId);
-			return new ResponseEntity<String>("User approved succesfully",HttpStatus.OK);
-		}
-		else{
-			return new ResponseEntity<String>("User not approved succesfully",HttpStatus.NOT_ACCEPTABLE);
-		}
-	}
-	
-	@GetMapping(value="/deleteUser/{userId}")
-	public ResponseEntity<String>deleteUser(@PathVariable("userId") String userId)
-	{
-		
-		if(userDAO.deleteUsers(userId))
-		{
-			return new ResponseEntity<String>("User deleted",HttpStatus.OK);
-		}
-		else{
-			return new ResponseEntity<String>("Error in user deletion",HttpStatus.NOT_ACCEPTABLE);
-		}
-	}
 	
 	@GetMapping(value="/editUser")
 	public ResponseEntity<?>editUser(@RequestBody Users users,HttpSession session)

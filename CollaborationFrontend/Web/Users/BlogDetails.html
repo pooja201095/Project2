@@ -1,0 +1,30 @@
+<div class="row">
+<div>
+<div class="panel panel-default">
+<div class="panel heading">
+<div>{{blog.blogTitle}}</div>
+<div>
+<span><strong>Created By::</strong>{{blog.postedBy.userid}}</span>
+<br>
+<span><strong>On::</strong>{{blog.postedOn | date:'medium'}}</span>
+</div>
+</div>
+<div class="panel-body">{{blog.blogContent}}</div>
+</div>
+</div>
+</div>
+{{blog.likes}}Likes
+<a><span class="glyphicon glyphicon-thumbs-up" ng-class="isLiked?'liked':'default'" ng-click="updateLikes()"></span></a>
+<br>
+<b>Comment</b>
+<ul>
+<li ng-repeat="blogComment in blogComments">
+{{blogComment.commentTxt}}
+<strong>By</strong> {{blogComment.commentedBy.userid}}
+<strong>On</strong>{{blogComment.commentedOn | date : 'medium'}}
+</li>
+</ul>
+<div>
+<textarea rows="2" cols="30" ng-model="blogComment.commentTxt"></textarea>
+<button class="btn btn-primary" value="POST COMMENT" ng-click="addComment()">POST COMMENT</button>
+</div>

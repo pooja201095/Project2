@@ -8,12 +8,9 @@ public interface UsersDAO {
 	boolean isEmailValid(String email);
 	public Users login(Users users);
 	public boolean createUsers(Users users);
+	public boolean isUpdatedEmailValid(String email,String userid);
 	public Users getUser(String userid);
 	public void editUsers(Users users);
-	public boolean isUpdatedEmailValid(String email,String userid);
-	public List<Users> getUsers();
-	public boolean approveUsers(Users users);
-	public boolean deleteUsers(String userid);
-	public List<Users> getApprovedUsers();
+	
 
 }

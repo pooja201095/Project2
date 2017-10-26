@@ -23,7 +23,6 @@ public class ForumDAOImpl implements ForumDAO{
 	}
 	
 	@Transactional
-	@Override
 	public boolean createForum(Forum forum) {
 		
 		try
@@ -45,7 +44,6 @@ public class ForumDAOImpl implements ForumDAO{
 	}
 
 	
-	@Override
 	public Forum getForum(int forumid) {
 		try
 		{
@@ -63,7 +61,6 @@ public class ForumDAOImpl implements ForumDAO{
 	}
 
 	@Transactional
-	@Override
 	public List<Forum> getForums() {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Forum");
@@ -73,7 +70,6 @@ public class ForumDAOImpl implements ForumDAO{
 	}
 	
 	@Transactional
-	@Override
 	public List<Forum> getApprovedForums() {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Forum where status='A'");
@@ -83,7 +79,6 @@ public class ForumDAOImpl implements ForumDAO{
 	}
 
 	@Transactional
-	@Override
 	public boolean approveForum(Forum forum) {
 
 		try{
@@ -100,7 +95,6 @@ public class ForumDAOImpl implements ForumDAO{
 	}
 
 	
-	@Override
 	public boolean editForum(int forumid) {
 		try{
 			Session session=sessionFactory.openSession();
@@ -116,7 +110,6 @@ public class ForumDAOImpl implements ForumDAO{
 			}
 	}
 
-	@Override
 	public boolean deleteForum(int forumid) {
 		try
 		{

@@ -17,7 +17,6 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 	 {
 		 this.sessionFactory=sessionFactory;
 	 }
-	@Override
 	public boolean createForumComment(ForumComment forumComment) {
 		
 		try{
@@ -35,7 +34,6 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 		}
 	}
 
-	@Override
 	public ForumComment getForumComment(int id) {
 		try{
 		Session session= sessionFactory.openSession();
@@ -50,7 +48,6 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 		}
 	}
 
-	@Override
 	public List<ForumComment> getForumComments() {
 		Session session= sessionFactory.openSession();
 		Query query=session.createQuery("from ForumComment");
@@ -58,7 +55,6 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 		return listForumComment;
 	}
 
-	@Override
 	public boolean editForumComment(int id) {
 		try{
 			Session session= sessionFactory.openSession();
@@ -75,7 +71,6 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 		}
 	}
 
-	@Override
 	public boolean deleteForumComment(int id) {
 		try{
 			Session session= sessionFactory.openSession();

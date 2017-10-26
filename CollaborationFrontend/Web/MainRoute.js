@@ -10,6 +10,21 @@ myApp.config(function($routeProvider)
 	.when("/ContactUs",{templateUrl:"Users/ContactUs.html",controller:"usercontroller"})
 	.when("/Editprofile",{templateUrl:"Users/Editprofile.html",controller:"usercontroller"})
 	
+	.when("/AddBlog",{templateUrl:"Users/AddBlog.html",controller:"blogcontroller"})
+	.when("/GetBlogs",{templateUrl:"Users/BlogList.html",controller:"blogcontroller"})
+	.when("/getBlogById/:id",{templateUrl:"Users/BlogDetails.html",controller:"blogdetailcontroller"})
+	.when("/GetApprovalForm/:id",{templateUrl:"Users/BlogApprovalForm.html",controller:"blogdetailcontroller"})
+	
+	.when("/AddJob",{templateUrl:"Users/JobForm.html",controller:"jobcontroller"})
+	.when("/GetAllJobs",{templateUrl:"Users/JobList.html",controller:"jobcontroller"})
+	
+	.when("/uploadProfilePicture",{templateUrl:"Users/ProfilePicture.html"})
+	.when("/getSuggestedUsers",{templateUrl:"Users/SuggestedUsers.html",controller:"friendcontroller"})
+	.when("/pendingRequests",{templateUrl:"Users/PendingRequests.html",controller:"friendcontroller"})
+	.when("/listOfFriends",{templateUrl:"Users/ListOfFriends.html",controller:"friendcontroller"})
+	
+	.otherwise({templateUrl:"Users/Home.html"})
+	
 		})
 myApp.run(function($rootScope,$cookieStore,UserService,$location)
 		{

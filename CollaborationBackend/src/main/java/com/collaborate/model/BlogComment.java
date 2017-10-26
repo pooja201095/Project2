@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,52 +15,59 @@ import javax.persistence.Table;
 @Table
 public class BlogComment {
 	@Id
-	int id;
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="blogId")
-	Blog blog;
-	String comments,userName;
-	Date CreateDate;
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="UserId")
-	Users users;
-	public int getId() {
-		return id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int blogCommentId;
+	
+	private String commentTxt;
+	
+	@ManyToOne
+	@JoinColumn(name="userid")
+	private Users commentedBy;
+	
+	private Date commentedOn;
+	
+	@ManyToOne
+	private Blog blog;
+
+	public int getBlogCommentId() {
+		return blogCommentId;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setBlogCommentId(int blogCommentId) {
+		this.blogCommentId = blogCommentId;
 	}
+
+	public String getCommentTxt() {
+		return commentTxt;
+	}
+
+	public void setCommentTxt(String commentTxt) {
+		this.commentTxt = commentTxt;
+	}
+
+	public Users getCommentedBy() {
+		return commentedBy;
+	}
+
+	public void setCommentedBy(Users commentedBy) {
+		this.commentedBy = commentedBy;
+	}
+
+	public Date getCommentedOn() {
+		return commentedOn;
+	}
+
+	public void setCommentedOn(Date commentedOn) {
+		this.commentedOn = commentedOn;
+	}
+
 	public Blog getBlog() {
 		return blog;
 	}
+
 	public void setBlog(Blog blog) {
 		this.blog = blog;
 	}
-	public String getComments() {
-		return comments;
-	}
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public Date getCreateDate() {
-		return CreateDate;
-	}
-	public void setCreateDate(Date createDate) {
-		CreateDate = createDate;
-	}
-	public Users getUsers() {
-		return users;
-	}
-	public void setUsers(Users users) {
-		this.users = users;
-	}
-	
 	
 	
 	

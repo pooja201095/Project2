@@ -21,6 +21,7 @@ import com.collaborate.model.Blog;
 
 
 @Repository("BlogDAO")
+@Transactional
 public class BlogDAOImpl implements BlogDAO {
 	
 	
@@ -33,119 +34,52 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	
-	@Transactional
-	@Override
-	public boolean createBlog(Blog blog) {
+	public void addBlog(Blog blog) {
 		try
 		{
 			Session session= sessionFactory.openSession();
-			
 			session.beginTransaction();
 			session.saveOrUpdate(blog);
-			/*sessionFactory.getCurrentSession().saveOrUpdate(blog);*/
+			sessionFactory.getCurrentSession().saveOrUpdate(blog);
 			
 			System.out.println("Blog Created.......");
 			session.getTransaction().commit();
-			return true;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			System.out.println("Exception:"+e);
-			return false;
 		}
 	}
 
-	@Transactional
-	@Override
-	public Blog getBlog(int blogid) {
-		try
-		{
-		Session session=sessionFactory.openSession();
-		Blog blog=(Blog) session.get(Blog.class,blogid);
-		System.out.println(blog.getBlogId());
+
+	public List<Blog> getBlogs(int approved) {
+		Session session=sessionFactory.getCurrentSession();
+		String querystring="";
+		if(approved==1){
+			querystring="From Blog where approved="+approved;
+		}
+		else{
+			querystring="From Blog where rejectionReason is null and approved="+approved;
+		}
+		Query query=session.createQuery(querystring);
+		System.out.println("Got list of all blogs successfully....!!!");
+		return query.list();
+	}
+
+	public Blog getBlogById(int id) {
+		Session session =sessionFactory.openSession();
+		session.beginTransaction();
+		Blog blog= (Blog) session.get(Blog.class,id);
+		session.getTransaction().commit();
 		return blog;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			System.out.println("Exception:"+e);
-			return null;
-		}
 	}
 
-	@Transactional
-	@Override
-	public List<Blog> getBlogs() {
-		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Blog");
-		List<Blog> listblog= query.list();
-		session.close();
-		return listblog;
-	}
-	
-	@Transactional
-	@Override
-	public List<Blog> getApprovedBlogs() {
-		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Blog where status='A'");
-		List<Blog> listblog= query.list();
-		session.close();
-		return listblog;
-	}
 
-	@Transactional
-	@Override
-	public boolean approveBlog(Blog blog) {
+	public void updateBlog(Blog blog) {
+		Session session =sessionFactory.getCurrentSession();
+		session.update(blog);
 		
-		try{
-			blog.setStatus("A");
-			sessionFactory.getCurrentSession().saveOrUpdate(blog);
-			return true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			System.out.println("Exception:"+e);
-			return false;
-		}
-		
-	}
-
-	@Transactional
-	@Override
-	public boolean editBlog(int blogid) {
-		try{
-		Session session=sessionFactory.openSession();
-		Blog blog=(Blog) session.get(Blog.class,blogid);
-		blog.setBlogName("Unittest");
-		session.flush();
-		session.close();
-		return true;
-		}
-		catch(Exception e){
-			System.out.println("Exception:"+e);
-			return false;
-		}
-	}
-
-	@Override
-	public boolean deleteBlog(int blogid) {
-		try
-		{
-		Session session=sessionFactory.openSession();
-		Blog blog=(Blog) session.get(Blog.class,blogid);
-		session.delete(blog);
-		session.flush();
-		session.close();
-		return true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			System.out.println("Exception :"+e);
-			return false;
-		}
 	}
 
 }

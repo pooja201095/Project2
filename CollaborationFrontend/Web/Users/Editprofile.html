@@ -1,30 +1,34 @@
 <div class="container">
-<form>
+<h1 style="text-align: center;font: bold;">Edit User Profile</h1>
+<div class="card card-container">
+<form class="form-signin">
+<span style="color:red" ng-if="error.code==1">{{error.message}}</span>
 <div class="form-group">
-UserId:<input type="text" ng-model="users.userid" class="form-control" disabled>
+<label style="font: bold;">UserID</label><input type="text" ng-model="users.userid" class="form-control" disabled>
 <span style="color:red" ng-if="error.code==2">{{error.message}}</span>
 </div>
 <div class="form-group">
-Password:<input type="password" ng-model="users.password" class="form-control">
+<label style="font: bold;">Password</label><input type="password" ng-model="users.password" class="form-control">
 </div>
 <div class="form-group">
-Firstname:<input type="text" ng-model="users.firstName" class="form-control">
+<label style="font: bold;">FirstName</label><input type="text" ng-model="users.firstName" class="form-control">
 </div>
 <div class="form-group">
-Lastname:<input type="text" ng-model="users.lastName" class="form-control">
+<label style="font: bold;">LastName</label><input type="text" ng-model="users.lastName" class="form-control">
 </div>
 <div class="form-group">
-EmailId:<input type="text" ng-model="users.email" class="form-control">
+<label style="font: bold;">Email ID</label><input type="text" ng-model="users.email" class="form-control">
 <span style="color:red" ng-if="error.code==3">{{error.message}}</span>
 </div>
 <div class="form-group">
-Phone No:<input type="text" ng-model="users.phoneNo" class="form-control">
+<label style="font: bold;">Phone No.</label><input type="text" ng-model="users.phoneNo" class="form-control">
 </div>
 <div class="form-group">
-Select Role:<input type="radio" ng-model="users.role" value="STUDENT" class="form-control">Student
-<input type="radio" ng-model="users.role" value="EMPLOYEE" class="form-control">Employee
-<input type="radio" ng-model="users.role" value="ALUMNI" class="form-control">Alumni
+<label style="font: bold;">Select Role</label><input type="radio" ng-model="users.role" value="STUDENT" class="form-control"><label style="font: bold;">Student</label>
+<input type="radio" ng-model="users.role" value="EMPLOYEE" class="form-control"><label style="font: bold;">Employee</label>
+<input type="radio" ng-model="users.role" value="ALUMNI" class="form-control"><label style="font: bold;">Alumni</label>
 </div>
-<input type="submit" role="button" value="Edit" ng-click="updateUsers()"> 
+<input type="submit" role="button" class="btn btn-lg btn-primary btn-block btn-signin" value="EDIT" ng-click="updateUsers()"> 
 </form>
+</div>
 </div>

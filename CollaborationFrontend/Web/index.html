@@ -1,8 +1,14 @@
+<!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+body{
+background: url("Images/wallpaperc4.jpg")no-repeat;
+background-size:cover;
+}
+</style>
 <meta charset="utf-8"/>
-<!-- <script src="angular.min.js"></script>
-<script src="angular-route.min.js"></script> -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
@@ -10,28 +16,89 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
 <script src="MainRoute.js"></script>
 <script src="usercontroller.js"></script>
+<script src="jobcontroller.js"></script>
+<script src="friendcontroller.js"></script>
+<script src="blogcontroller.js"></script>
+<script src="blogdetailcontroller.js"></script>
 <script src="Services/userService.js"></script>
+<script src="Services/blogservice.js"></script>
+<script src="Services/friendservice.js"></script>
+<script src="Services/jobservice.js"></script>
+ <link rel="stylesheet" href="Style1.css">
+    <link rel="stylesheet" href="like.css">
+
 </head>
 <body ng-app="myApp">
-<table>
-<tr>
-<td colspan="2">Collaboration</td>
-<tr><td colspan="2">
-<center>
-<a href="#/Home">Home</a>
-<a href="#/Login" ng-hide="currentUser.userid">Login</a>
-<a href="#/Register" ng-hide="currentUser.userid">Register</a>
-<a href="#/AboutUs">About Us</a>
-<a href="#/ContactUs">Contact Us</a>
-<a href="" ng-show="currentUser.userid" ng-click="logout()">Logout</a>
-<a href="#/Editprofile" ng-show="currentUser.userid">Edit Profile</a>
-<a href="#" ng-show="currentUser.userid">Welcome {{currentUser.userid}}</a>
-</center></td></tr>
-<tr>
-<td><div ng-view></div></td>
-</tr>
-</table>
+
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+  <div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+  <span class="sr-only">Toggle navigation</span>
+  <span class="icon-bar"></span>
+   <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+ </div>
+ <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ <ul class="nav navbar-nav">
+<li><a href="#/Home">Home</a></li>
+<li><a href="#/AboutUs">About Us</a></li>
+<li><a href="#/ContactUs">Contact Us</a></li>
+<li><a href="#/Editprofile" ng-show="currentUser.userid">Edit Profile</a></li>
+
+<!-- ====================dropdown for blogpost================== -->
+<li class="dropdown">
+<a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="currentUser.userid">Blog
+<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="#/AddBlog">Add Blog</a></li>
+<li><a href="#/GetBlogs">Get All Blogs</a></li>
+</ul>
+</li>
+
+<!-- ====================dropdown for Job================== -->
+<li class="dropdown">
+<a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="currentUser.userid">Jobs
+<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="#/AddJob" ng-show="currentUser.role=='ADMIN'">Add Jobs</a></li>
+<li><a href="#/GetAllJobs">Get All Jobs</a></li>
+</ul>
+</li>
+
+<!-- =================Profile picture====================== -->
+<li><a href="#/uploadProfilePicture" ng-show="currentUser.userid">
+<img src="http://localhost:8081/CollaborationMiddleware/getProfilePicture/{{currentUser.userid}}" alt="Upload profile Picture" height="40px" width="40px" class="img-rounded">
+</a>
+</li>
+
+<!-- ====================dropdown for Friend================== -->
+<li class="dropdown">
+<a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="currentUser.userid">Friend
+<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="#/getSuggestedUsers">List Of Suggested Users</a></li>
+<li><a href="#/pendingRequests">Pending Requests</a></li>
+<li><a href="#/listOfFriends">Friends</a></li>
+</ul>
+</li>
+
+
+</ul>
+<!--===================== Right aligned ===================-->
+<ul class="nav navbar-nav navbar-right">
+<li><a href="#/Login" ng-hide="currentUser.userid">Login</a></li>
+<li><a href="#/Register" ng-hide="currentUser.userid">Register</a></li>
+<li><a href="" ng-show="currentUser.userid" ng-click="logout()">Logout</a></li>
+<li><a href="#" ng-show="currentUser.userid">Welcome {{currentUser.userid}}</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div ng-view></div>
 </body>
 </html>

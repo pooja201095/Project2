@@ -24,7 +24,7 @@ public class BlogDAOTestCase {
 		blogDAO=(BlogDAO)annotationConfigApplicationContext.getBean("BlogDAO");
 	}
 
-	
+	/*@Ignore
 	@Test
 	public void createBlogTest() 
 	{
@@ -83,13 +83,14 @@ public class BlogDAOTestCase {
 		
 		assertTrue("Problem in editing Blog", blogDAO.editBlog(1001));
 	}
+	*/
 	
-	@Ignore
+	/*@Ignore
 	@Test
 	public void deleteBlogTest()
 	{
 		assertTrue("Problem in deleting Blog", blogDAO.deleteBlog(1001));
 	}
-
+*/
 
 }

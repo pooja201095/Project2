@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.collaborate.model.Blog;
 import com.collaborate.model.BlogComment;
 import com.collaborate.model.Forum;
+import com.collaborate.model.Friend;
+import com.collaborate.model.Job;
 import com.collaborate.model.Users;
 
 @Configuration //add Spring-context dependency to pom
@@ -54,6 +56,8 @@ public class DBConfig {
 		localSessionFactoryBuilder.addAnnotatedClass(Blog.class);
 		localSessionFactoryBuilder.addAnnotatedClass(Forum.class);
 		localSessionFactoryBuilder.addAnnotatedClass(Users.class);
+		localSessionFactoryBuilder.addAnnotatedClass(Job.class);
+		localSessionFactoryBuilder.addAnnotatedClass(Friend.class);
 		localSessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
 		System.out.println("Session Factory Bean Created........");
 		return localSessionFactoryBuilder.buildSessionFactory();
